@@ -98,7 +98,7 @@ recognition.onend = function(){
             } catch(error) {
                 console.log("could not restart recognition: ", error);
             }
-        }, 800);
+        }, 1500);
         
     }
 }
@@ -113,6 +113,7 @@ recognition.onerror = function(event) {
         updateDisplay("Microphone access denied")
     }
 }
+
 skipButton.addEventListener('click', function(){
     if (i < arr.length)
     i++
@@ -129,15 +130,16 @@ recognition.addEventListener('result', function(e){
     let expectedWord = arr[i];
     let latestTake = e.results[e.results.length - 1]
     for (let j = 0; j < latestTake.length; j++){
-        let currentGuess = normalizeword(latestTake[j].transcript.trim().toLowerCase().split(/\s+/)[0])
+        let fullTranscript = latestTake[j].transcript.trim().toLowerCase()
         
-        if(j === 0){
-            firstGuess = currentGuess;
+        let spokenWordsArray = fullTranscript.split(/\s+/).map(normalizeword);
+        if(j === 0 && spokenWordsArray.length > 0){
+            firstGuess = spokenWordsArray[spokenWordsArray.length - 1];
         }
 
-        if(currentGuess == expectedWord){
+        if(spokenWordsArray.includes(expectedWord)){
             matchFound = true;
-            spokenWord = currentGuess;
+            spokenWord = expectedWord;
             break;
         }
     }
@@ -160,5 +162,7 @@ recognition.addEventListener('result', function(e){
         console.log("expectedWord:", arr[i] ?? "END")
         
 })
+
+
 
 
