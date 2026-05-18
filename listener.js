@@ -91,8 +91,26 @@ restartButton.addEventListener('click', function(){
     updateDisplay("Listening....")
 })
 recognition.onend = function(){
-    if (!ispaused){
-        recognition.start()
+    if (!ispaused && i < arr.length){
+        setTimeout(() => {
+            try {
+                recognition.start();
+            } catch(error) {
+                console.log("could not restart recognition: ", error);
+            }
+        }, 800);
+        
+    }
+}
+
+recognition.onerror = function(event) {
+    console.log("speech recognition error detected: " + event.error);
+    if(event.error === 'no-speech') {
+        updateDisplay("Listening is paused due to silence, waiting for restart...");
+    }
+    if(event.error === 'not-allowed') {
+        ispaused = true;
+        updateDisplay("Microphone access denied")
     }
 }
 skipButton.addEventListener('click', function(){
