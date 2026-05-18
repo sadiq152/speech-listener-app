@@ -98,7 +98,7 @@ recognition.onend = function(){
             } catch(error) {
                 console.log("could not restart recognition: ", error);
             }
-        }, 1500);
+        }, 2500);
         
     }
 }
