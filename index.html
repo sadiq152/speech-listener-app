@@ -4,27 +4,89 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Listener</title>
+        <title>Fluency+</title>
         <style>
             body {
                 width: 90%;
                 margin: 0 auto;
-                margin-top: 1rem;
+                max-width: 800px;
+                margin-top: 2rem;
+                background-color: #1e1d1d;
+                font-family: Arial, sans-serif;
+            }
+            .welcome-box{
+                    text-align: center;
+                    margin-bottom: 2rem;
+            }
+            .welcome-box h1 {
+                color: bisque;
+                font-size: 2.5rem;
+                margin-bottom: 5px;
+                margin-top: 0;
+            }
+            .descriptive{
+                color: #e4dede;
+                font-size: 1.2rem;
+                margin: 0 0 10px 0;
+            }
+            .instructions{
+                color: #a0a0a0;
+                font-size: 1rem;
+                margin: 0;
             }
             #text {
                 width: 100%;
                 height: 50vh;
+                background-color: #2A2A2A;
+                color: #e4dede;
+                border: 1px solid #444;
+                border-radius: 8px;
+                padding: 15px;
+                font-size: 1.1rem;
+                box-sizing: border-box;
+                resize: vertical;
+            }
+            .controls {
+                margin-top: 15px;
+            }
+            button {
+                background-color: bisque;
+                color: #1e1d1d;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-weight: bold;
+                cursor: pointer;
+                margin-right: 5px;
+            }
+            button:hover {
+                background-color: white;
+            }
+            #skipbutton {
+                float: right;
+                margin-right: 0;
             }
         </style>
         <script src="listener.js" defer></script>
     </head>
-    <body style="background-color:#1e1d1d">
+        <body style="background-color:#1e1d1d">
+            <div class="welcome-box">
+            <h1>Welcome to fluency+</h1>
+            <p class="descriptive">
+                A tool to help non-native speakers improve their english.
+            </p>
+            <p class="instructions">
+                Type your text, hit play, allow microphone permissions, and start speaking.
+            </p>
+        </div>
         <textarea style="background-color: #2A2A2A; color: #e4dede;" id="text" placeholder="Type..."></textarea>
-        <button type="button" id="playbutton">Play</button>
-        <button type="button" id="stopbutton">Stop</button>
-        <button type="button" id="restartbutton">Restart</button>
+        <div class="controls">
+            <button type="button" id="playbutton">Play</button>
+            <button type="button" id="stopbutton">Stop</button>
+            <button type="button" id="restartbutton">Restart</button>
+            <button style="display: block; margin-left: auto;" type="button" id="skipbutton">Skip</button>
+        </div>
         <h1 style="color: #E0E0E0; background-color: #1E1E1E;" id="highlight"></h1>
         <h2 style="text-align: right; color: #E0E0E0; background-color: #1E1E1E;" id="expected"></h2>
-        <button style="display: block; margin-left: auto;" type="button" id="skipbutton">Skip</button>
     </body>
 </html>
